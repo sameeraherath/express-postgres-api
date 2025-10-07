@@ -22,6 +22,7 @@ npm install
 ```
 
 This will install all required packages:
+
 - Express.js (web framework)
 - Sequelize (ORM)
 - PostgreSQL driver
@@ -126,6 +127,7 @@ curl http://localhost:3000
 ```
 
 Expected response:
+
 ```json
 {
   "success": true,
@@ -178,23 +180,27 @@ curl http://localhost:3000/api/posts
 ### 🚀 Deploy Your API
 
 Ready to deploy? Check out:
+
 - [Deployment Guide](./docs/DEPLOYMENT.md)
 
 ### 🛠 Development Tips
 
 1. **Use a REST Client**
+
    - Install [Thunder Client](https://www.thunderclient.com/) (VS Code extension)
    - Or use [Postman](https://www.postman.com/)
 
 2. **View Database**
+
    - Install [pgAdmin](https://www.pgadmin.org/)
    - Or use [DBeaver](https://dbeaver.io/)
 
 3. **Monitor Logs**
+
    ```bash
    # Watch logs in development
    npm run dev
-   
+
    # Or use nodemon directly
    npx nodemon src/server.js
    ```
@@ -231,20 +237,20 @@ npm install
 
 ### API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register user |
-| POST | `/api/auth/login` | Login user |
-| GET | `/api/auth/me` | Get current user |
-| GET | `/api/posts` | Get all posts |
-| POST | `/api/posts` | Create post (auth) |
-| GET | `/api/posts/:id` | Get single post |
-| PUT | `/api/posts/:id` | Update post (auth) |
-| DELETE | `/api/posts/:id` | Delete post (auth) |
-| GET | `/api/comments/post/:postId` | Get comments |
-| POST | `/api/comments/post/:postId` | Add comment (auth) |
-| POST | `/api/likes/post/:postId` | Like post (auth) |
-| DELETE | `/api/likes/post/:postId` | Unlike post (auth) |
+| Method | Endpoint                     | Description        |
+| ------ | ---------------------------- | ------------------ |
+| POST   | `/api/auth/register`         | Register user      |
+| POST   | `/api/auth/login`            | Login user         |
+| GET    | `/api/auth/me`               | Get current user   |
+| GET    | `/api/posts`                 | Get all posts      |
+| POST   | `/api/posts`                 | Create post (auth) |
+| GET    | `/api/posts/:id`             | Get single post    |
+| PUT    | `/api/posts/:id`             | Update post (auth) |
+| DELETE | `/api/posts/:id`             | Delete post (auth) |
+| GET    | `/api/comments/post/:postId` | Get comments       |
+| POST   | `/api/comments/post/:postId` | Add comment (auth) |
+| POST   | `/api/likes/post/:postId`    | Like post (auth)   |
+| DELETE | `/api/likes/post/:postId`    | Unlike post (auth) |
 
 ### Scripts
 
@@ -263,6 +269,7 @@ npm test           # Run tests (when implemented)
 ## Success! 🎉
 
 You're now running a complete social media backend with:
+
 - ✅ User authentication (JWT)
 - ✅ Post management (CRUD)
 - ✅ Comments system

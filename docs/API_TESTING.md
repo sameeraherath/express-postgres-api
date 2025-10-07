@@ -5,16 +5,19 @@ This guide provides examples for testing all API endpoints using various tools.
 ## Prerequisites
 
 1. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Set up PostgreSQL Database**
+
    ```sql
    CREATE DATABASE social_media_db;
    ```
 
 3. **Configure Environment Variables**
+
    - Copy `.env.example` to `.env`
    - Update database credentials
 
@@ -26,6 +29,7 @@ This guide provides examples for testing all API endpoints using various tools.
 ## Testing Tools
 
 You can use any of the following:
+
 - **cURL** (command line)
 - **Postman** (GUI)
 - **Thunder Client** (VS Code extension)
@@ -38,6 +42,7 @@ You can use any of the following:
 ### 1. Register User
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
@@ -51,6 +56,7 @@ curl -X POST http://localhost:3000/api/auth/register \
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -71,6 +77,7 @@ curl -X POST http://localhost:3000/api/auth/register \
 ### 2. Login
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/login \
   -H "Content-Type: application/json" \
@@ -81,6 +88,7 @@ curl -X POST http://localhost:3000/api/auth/login \
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -100,6 +108,7 @@ curl -X POST http://localhost:3000/api/auth/login \
 ### 3. Get Current User
 
 **cURL:**
+
 ```bash
 curl -X GET http://localhost:3000/api/auth/me \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
@@ -112,6 +121,7 @@ curl -X GET http://localhost:3000/api/auth/me \
 ### 1. Get All Posts
 
 **cURL:**
+
 ```bash
 curl -X GET "http://localhost:3000/api/posts?page=1&limit=10"
 ```
@@ -119,6 +129,7 @@ curl -X GET "http://localhost:3000/api/posts?page=1&limit=10"
 ### 2. Get Single Post
 
 **cURL:**
+
 ```bash
 curl -X GET http://localhost:3000/api/posts/1
 ```
@@ -126,6 +137,7 @@ curl -X GET http://localhost:3000/api/posts/1
 ### 3. Create Post
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/posts \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
@@ -139,6 +151,7 @@ curl -X POST http://localhost:3000/api/posts \
 ### 4. Update Post
 
 **cURL:**
+
 ```bash
 curl -X PUT http://localhost:3000/api/posts/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
@@ -152,6 +165,7 @@ curl -X PUT http://localhost:3000/api/posts/1 \
 ### 5. Delete Post
 
 **cURL:**
+
 ```bash
 curl -X DELETE http://localhost:3000/api/posts/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
@@ -160,6 +174,7 @@ curl -X DELETE http://localhost:3000/api/posts/1 \
 ### 6. Get User's Posts
 
 **cURL:**
+
 ```bash
 curl -X GET "http://localhost:3000/api/posts/user/1?page=1&limit=10"
 ```
@@ -171,6 +186,7 @@ curl -X GET "http://localhost:3000/api/posts/user/1?page=1&limit=10"
 ### 1. Get Post Comments
 
 **cURL:**
+
 ```bash
 curl -X GET "http://localhost:3000/api/comments/post/1?page=1&limit=20"
 ```
@@ -178,6 +194,7 @@ curl -X GET "http://localhost:3000/api/comments/post/1?page=1&limit=20"
 ### 2. Add Comment
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/comments/post/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
@@ -190,6 +207,7 @@ curl -X POST http://localhost:3000/api/comments/post/1 \
 ### 3. Update Comment
 
 **cURL:**
+
 ```bash
 curl -X PUT http://localhost:3000/api/comments/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE" \
@@ -202,6 +220,7 @@ curl -X PUT http://localhost:3000/api/comments/1 \
 ### 4. Delete Comment
 
 **cURL:**
+
 ```bash
 curl -X DELETE http://localhost:3000/api/comments/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
@@ -214,6 +233,7 @@ curl -X DELETE http://localhost:3000/api/comments/1 \
 ### 1. Like Post
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/likes/post/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
@@ -222,6 +242,7 @@ curl -X POST http://localhost:3000/api/likes/post/1 \
 ### 2. Unlike Post
 
 **cURL:**
+
 ```bash
 curl -X DELETE http://localhost:3000/api/likes/post/1 \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
@@ -230,6 +251,7 @@ curl -X DELETE http://localhost:3000/api/likes/post/1 \
 ### 3. Get Post Likes
 
 **cURL:**
+
 ```bash
 curl -X GET "http://localhost:3000/api/likes/post/1?page=1&limit=20"
 ```
@@ -237,6 +259,7 @@ curl -X GET "http://localhost:3000/api/likes/post/1?page=1&limit=20"
 ### 4. Get User Likes
 
 **cURL:**
+
 ```bash
 curl -X GET "http://localhost:3000/api/likes/user/1?page=1&limit=10"
 ```
@@ -249,6 +272,7 @@ curl -X GET "http://localhost:3000/api/likes/user/1?page=1&limit=10"
 
 1. Create a new collection
 2. Add environment variables:
+
    - `base_url`: `http://localhost:3000`
    - `token`: (will be set after login)
 
@@ -339,6 +363,7 @@ curl -X GET http://localhost:3000/api/posts/$POST_ID
 ## Error Responses
 
 ### Validation Error
+
 ```json
 {
   "success": false,
@@ -354,6 +379,7 @@ curl -X GET http://localhost:3000/api/posts/$POST_ID
 ```
 
 ### Authentication Error
+
 ```json
 {
   "success": false,
@@ -362,6 +388,7 @@ curl -X GET http://localhost:3000/api/posts/$POST_ID
 ```
 
 ### Authorization Error
+
 ```json
 {
   "success": false,
@@ -370,6 +397,7 @@ curl -X GET http://localhost:3000/api/posts/$POST_ID
 ```
 
 ### Not Found Error
+
 ```json
 {
   "success": false,
@@ -382,10 +410,12 @@ curl -X GET http://localhost:3000/api/posts/$POST_ID
 ## Rate Limiting
 
 The API implements rate limiting:
+
 - **Window**: 15 minutes
 - **Max Requests**: 100 per IP
 
 If you exceed the limit:
+
 ```json
 {
   "success": false,
@@ -400,6 +430,7 @@ If you exceed the limit:
 1. **Save your token** after login/register for authenticated requests
 2. **Use environment variables** in Postman for easier testing
 3. **Check response status codes**:
+
    - 200: Success
    - 201: Created
    - 400: Bad Request

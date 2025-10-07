@@ -74,7 +74,7 @@ components:
           type: integer
           example: 1
         author:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
         commentsCount:
           type: integer
           example: 5
@@ -104,7 +104,7 @@ components:
           type: integer
           example: 1
         author:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
         createdAt:
           type: string
           format: date-time
@@ -125,7 +125,7 @@ components:
           type: integer
           example: 1
         user:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
         createdAt:
           type: string
           format: date-time
@@ -172,7 +172,7 @@ paths:
       tags:
         - Health
       responses:
-        '200':
+        "200":
           description: API is running
           content:
             application/json:
@@ -224,7 +224,7 @@ paths:
                   type: string
                   example: Software developer
       responses:
-        '201':
+        "201":
           description: User registered successfully
           content:
             application/json:
@@ -239,15 +239,15 @@ paths:
                     type: object
                     properties:
                       user:
-                        $ref: '#/components/schemas/User'
+                        $ref: "#/components/schemas/User"
                       token:
                         type: string
-        '400':
+        "400":
           description: Validation error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/auth/login:
     post:
@@ -273,7 +273,7 @@ paths:
                   format: password
                   example: SecurePass123!
       responses:
-        '200':
+        "200":
           description: Login successful
           content:
             application/json:
@@ -288,15 +288,15 @@ paths:
                     type: object
                     properties:
                       user:
-                        $ref: '#/components/schemas/User'
+                        $ref: "#/components/schemas/User"
                       token:
                         type: string
-        '401':
+        "401":
           description: Invalid credentials
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/auth/me:
     get:
@@ -306,7 +306,7 @@ paths:
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Current user retrieved
           content:
             application/json:
@@ -319,13 +319,13 @@ paths:
                     type: object
                     properties:
                       user:
-                        $ref: '#/components/schemas/User'
-        '401':
+                        $ref: "#/components/schemas/User"
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/posts:
     get:
@@ -346,7 +346,7 @@ paths:
             default: 10
           description: Items per page
       responses:
-        '200':
+        "200":
           description: Posts retrieved successfully
           content:
             application/json:
@@ -361,9 +361,9 @@ paths:
                       posts:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Post'
+                          $ref: "#/components/schemas/Post"
                       pagination:
-                        $ref: '#/components/schemas/Pagination'
+                        $ref: "#/components/schemas/Pagination"
 
     post:
       summary: Create a new post
@@ -388,7 +388,7 @@ paths:
                   type: string
                   example: This is the content of my first post
       responses:
-        '201':
+        "201":
           description: Post created successfully
           content:
             application/json:
@@ -403,13 +403,13 @@ paths:
                     type: object
                     properties:
                       post:
-                        $ref: '#/components/schemas/Post'
-        '401':
+                        $ref: "#/components/schemas/Post"
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/posts/{id}:
     get:
@@ -424,7 +424,7 @@ paths:
             type: integer
           description: Post ID
       responses:
-        '200':
+        "200":
           description: Post retrieved successfully
           content:
             application/json:
@@ -437,13 +437,13 @@ paths:
                     type: object
                     properties:
                       post:
-                        $ref: '#/components/schemas/Post'
-        '404':
+                        $ref: "#/components/schemas/Post"
+        "404":
           description: Post not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     put:
       summary: Update a post
@@ -472,7 +472,7 @@ paths:
                   type: string
                   example: Updated content
       responses:
-        '200':
+        "200":
           description: Post updated successfully
           content:
             application/json:
@@ -487,13 +487,13 @@ paths:
                     type: object
                     properties:
                       post:
-                        $ref: '#/components/schemas/Post'
-        '403':
+                        $ref: "#/components/schemas/Post"
+        "403":
           description: Not authorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     delete:
       summary: Delete a post
@@ -509,14 +509,14 @@ paths:
             type: integer
           description: Post ID
       responses:
-        '200':
+        "200":
           description: Post deleted successfully
-        '403':
+        "403":
           description: Not authorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/comments/post/{postId}:
     get:
@@ -541,7 +541,7 @@ paths:
             type: integer
             default: 20
       responses:
-        '200':
+        "200":
           description: Comments retrieved successfully
           content:
             application/json:
@@ -556,9 +556,9 @@ paths:
                       comments:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Comment'
+                          $ref: "#/components/schemas/Comment"
                       pagination:
-                        $ref: '#/components/schemas/Pagination'
+                        $ref: "#/components/schemas/Pagination"
 
     post:
       summary: Add a comment to a post
@@ -586,7 +586,7 @@ paths:
                   type: string
                   example: Great post!
       responses:
-        '201':
+        "201":
           description: Comment added successfully
           content:
             application/json:
@@ -601,7 +601,7 @@ paths:
                     type: object
                     properties:
                       comment:
-                        $ref: '#/components/schemas/Comment'
+                        $ref: "#/components/schemas/Comment"
 
   /api/likes/post/{postId}:
     post:
@@ -618,7 +618,7 @@ paths:
             type: integer
           description: Post ID
       responses:
-        '201':
+        "201":
           description: Post liked successfully
           content:
             application/json:
@@ -649,7 +649,7 @@ paths:
             type: integer
           description: Post ID
       responses:
-        '200':
+        "200":
           description: Post unliked successfully
           content:
             application/json:
@@ -688,7 +688,7 @@ paths:
             type: integer
             default: 20
       responses:
-        '200':
+        "200":
           description: Likes retrieved successfully
           content:
             application/json:
@@ -705,6 +705,6 @@ paths:
                       likes:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Like'
+                          $ref: "#/components/schemas/Like"
                       pagination:
-                        $ref: '#/components/schemas/Pagination'
+                        $ref: "#/components/schemas/Pagination"

@@ -1,4 +1,4 @@
-const { Comment, User, Post } = require('../models');
+const { Comment, User, Post } = require("../models");
 
 /**
  * @route   GET /api/comments/post/:postId
@@ -18,7 +18,7 @@ const getCommentsByPost = async (req, res, next) => {
     if (!post) {
       return res.status(404).json({
         success: false,
-        message: 'Post not found'
+        message: "Post not found",
       });
     }
 
@@ -26,14 +26,14 @@ const getCommentsByPost = async (req, res, next) => {
       where: { postId },
       limit,
       offset,
-      order: [['createdAt', 'DESC']],
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: User,
-          as: 'author',
-          attributes: ['id', 'username', 'fullName']
-        }
-      ]
+          as: "author",
+          attributes: ["id", "username", "fullName"],
+        },
+      ],
     });
 
     res.status(200).json({
@@ -44,9 +44,9 @@ const getCommentsByPost = async (req, res, next) => {
           currentPage: page,
           totalPages: Math.ceil(count / limit),
           totalItems: count,
-          itemsPerPage: limit
-        }
-      }
+          itemsPerPage: limit,
+        },
+      },
     });
   } catch (error) {
     next(error);
@@ -70,14 +70,14 @@ const createComment = async (req, res, next) => {
     if (!post) {
       return res.status(404).json({
         success: false,
-        message: 'Post not found'
+        message: "Post not found",
       });
     }
 
     const comment = await Comment.create({
       content,
       userId,
-      postId
+      postId,
     });
 
     // Fetch comment with author info
@@ -85,18 +85,18 @@ const createComment = async (req, res, next) => {
       include: [
         {
           model: User,
-          as: 'author',
-          attributes: ['id', 'username', 'fullName']
-        }
-      ]
+          as: "author",
+          attributes: ["id", "username", "fullName"],
+        },
+      ],
     });
 
     res.status(201).json({
       success: true,
-      message: 'Comment added successfully',
+      message: "Comment added successfully",
       data: {
-        comment: commentWithAuthor
-      }
+        comment: commentWithAuthor,
+      },
     });
   } catch (error) {
     next(error);
@@ -119,7 +119,7 @@ const updateComment = async (req, res, next) => {
     if (!comment) {
       return res.status(404).json({
         success: false,
-        message: 'Comment not found'
+        message: "Comment not found",
       });
     }
 
@@ -127,7 +127,7 @@ const updateComment = async (req, res, next) => {
     if (comment.userId !== userId) {
       return res.status(403).json({
         success: false,
-        message: 'You are not authorized to update this comment'
+        message: "You are not authorized to update this comment",
       });
     }
 
@@ -139,18 +139,18 @@ const updateComment = async (req, res, next) => {
       include: [
         {
           model: User,
-          as: 'author',
-          attributes: ['id', 'username', 'fullName']
-        }
-      ]
+          as: "author",
+          attributes: ["id", "username", "fullName"],
+        },
+      ],
     });
 
     res.status(200).json({
       success: true,
-      message: 'Comment updated successfully',
+      message: "Comment updated successfully",
       data: {
-        comment: updatedComment
-      }
+        comment: updatedComment,
+      },
     });
   } catch (error) {
     next(error);
@@ -172,7 +172,7 @@ const deleteComment = async (req, res, next) => {
     if (!comment) {
       return res.status(404).json({
         success: false,
-        message: 'Comment not found'
+        message: "Comment not found",
       });
     }
 
@@ -180,7 +180,7 @@ const deleteComment = async (req, res, next) => {
     if (comment.userId !== userId) {
       return res.status(403).json({
         success: false,
-        message: 'You are not authorized to delete this comment'
+        message: "You are not authorized to delete this comment",
       });
     }
 
@@ -188,7 +188,7 @@ const deleteComment = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Comment deleted successfully'
+      message: "Comment deleted successfully",
     });
   } catch (error) {
     next(error);
@@ -199,5 +199,5 @@ module.exports = {
   getCommentsByPost,
   createComment,
   updateComment,
-  deleteComment
+  deleteComment,
 };

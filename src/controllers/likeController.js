@@ -1,4 +1,4 @@
-const { Like, User, Post } = require('../models');
+const { Like, User, Post } = require("../models");
 
 /**
  * @route   POST /api/likes/post/:postId
@@ -16,39 +16,39 @@ const likePost = async (req, res, next) => {
     if (!post) {
       return res.status(404).json({
         success: false,
-        message: 'Post not found'
+        message: "Post not found",
       });
     }
 
     // Check if already liked
     const existingLike = await Like.findOne({
-      where: { userId, postId }
+      where: { userId, postId },
     });
 
     if (existingLike) {
       return res.status(400).json({
         success: false,
-        message: 'You have already liked this post'
+        message: "You have already liked this post",
       });
     }
 
     // Create like
     await Like.create({
       userId,
-      postId
+      postId,
     });
 
     // Get updated likes count
     const likesCount = await Like.count({
-      where: { postId }
+      where: { postId },
     });
 
     res.status(201).json({
       success: true,
-      message: 'Post liked successfully',
+      message: "Post liked successfully",
       data: {
-        likesCount
-      }
+        likesCount,
+      },
     });
   } catch (error) {
     next(error);
@@ -71,19 +71,19 @@ const unlikePost = async (req, res, next) => {
     if (!post) {
       return res.status(404).json({
         success: false,
-        message: 'Post not found'
+        message: "Post not found",
       });
     }
 
     // Find and delete like
     const like = await Like.findOne({
-      where: { userId, postId }
+      where: { userId, postId },
     });
 
     if (!like) {
       return res.status(400).json({
         success: false,
-        message: 'You have not liked this post'
+        message: "You have not liked this post",
       });
     }
 
@@ -91,15 +91,15 @@ const unlikePost = async (req, res, next) => {
 
     // Get updated likes count
     const likesCount = await Like.count({
-      where: { postId }
+      where: { postId },
     });
 
     res.status(200).json({
       success: true,
-      message: 'Post unliked successfully',
+      message: "Post unliked successfully",
       data: {
-        likesCount
-      }
+        likesCount,
+      },
     });
   } catch (error) {
     next(error);
@@ -124,7 +124,7 @@ const getPostLikes = async (req, res, next) => {
     if (!post) {
       return res.status(404).json({
         success: false,
-        message: 'Post not found'
+        message: "Post not found",
       });
     }
 
@@ -132,14 +132,14 @@ const getPostLikes = async (req, res, next) => {
       where: { postId },
       limit,
       offset,
-      order: [['createdAt', 'DESC']],
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: User,
-          as: 'user',
-          attributes: ['id', 'username', 'fullName']
-        }
-      ]
+          as: "user",
+          attributes: ["id", "username", "fullName"],
+        },
+      ],
     });
 
     res.status(200).json({
@@ -151,9 +151,9 @@ const getPostLikes = async (req, res, next) => {
           currentPage: page,
           totalPages: Math.ceil(count / limit),
           totalItems: count,
-          itemsPerPage: limit
-        }
-      }
+          itemsPerPage: limit,
+        },
+      },
     });
   } catch (error) {
     next(error);
@@ -174,13 +174,13 @@ const getUserLikes = async (req, res, next) => {
 
     // Check if user exists
     const user = await User.findByPk(userId, {
-      attributes: ['id', 'username', 'fullName']
+      attributes: ["id", "username", "fullName"],
     });
 
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -188,20 +188,20 @@ const getUserLikes = async (req, res, next) => {
       where: { userId },
       limit,
       offset,
-      order: [['createdAt', 'DESC']],
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: Post,
-          as: 'post',
+          as: "post",
           include: [
             {
               model: User,
-              as: 'author',
-              attributes: ['id', 'username', 'fullName']
-            }
-          ]
-        }
-      ]
+              as: "author",
+              attributes: ["id", "username", "fullName"],
+            },
+          ],
+        },
+      ],
     });
 
     res.status(200).json({
@@ -213,9 +213,9 @@ const getUserLikes = async (req, res, next) => {
           currentPage: page,
           totalPages: Math.ceil(count / limit),
           totalItems: count,
-          itemsPerPage: limit
-        }
-      }
+          itemsPerPage: limit,
+        },
+      },
     });
   } catch (error) {
     next(error);
@@ -226,5 +226,5 @@ module.exports = {
   likePost,
   unlikePost,
   getPostLikes,
-  getUserLikes
+  getUserLikes,
 };

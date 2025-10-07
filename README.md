@@ -63,35 +63,42 @@ express-postgres-api/
 ## Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd express-postgres-api
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up PostgreSQL database**
+
    - Install PostgreSQL if not already installed
    - Create a database named `social_media_db`
+
    ```sql
    CREATE DATABASE social_media_db;
    ```
 
 4. **Configure environment variables**
+
    - Copy `.env.example` to `.env`
    - Update the values in `.env` with your configuration
+
    ```bash
    cp .env.example .env
    ```
 
 5. **Start the server**
+
    ```bash
    # Development mode with auto-restart
    npm run dev
-   
+
    # Production mode
    npm start
    ```
@@ -100,43 +107,44 @@ express-postgres-api/
 
 ### Authentication
 
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register a new user | No |
-| POST | `/api/auth/login` | Login user | No |
-| GET | `/api/auth/me` | Get current user | Yes |
+| Method | Endpoint             | Description         | Auth Required |
+| ------ | -------------------- | ------------------- | ------------- |
+| POST   | `/api/auth/register` | Register a new user | No            |
+| POST   | `/api/auth/login`    | Login user          | No            |
+| GET    | `/api/auth/me`       | Get current user    | Yes           |
 
 ### Posts
 
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/posts` | Get all posts (paginated) | No |
-| GET | `/api/posts/:id` | Get single post | No |
-| POST | `/api/posts` | Create a new post | Yes |
-| PUT | `/api/posts/:id` | Update a post | Yes (Owner) |
-| DELETE | `/api/posts/:id` | Delete a post | Yes (Owner) |
-| GET | `/api/posts/user/:userId` | Get user's posts | No |
+| Method | Endpoint                  | Description               | Auth Required |
+| ------ | ------------------------- | ------------------------- | ------------- |
+| GET    | `/api/posts`              | Get all posts (paginated) | No            |
+| GET    | `/api/posts/:id`          | Get single post           | No            |
+| POST   | `/api/posts`              | Create a new post         | Yes           |
+| PUT    | `/api/posts/:id`          | Update a post             | Yes (Owner)   |
+| DELETE | `/api/posts/:id`          | Delete a post             | Yes (Owner)   |
+| GET    | `/api/posts/user/:userId` | Get user's posts          | No            |
 
 ### Comments
 
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/comments/post/:postId` | Get post comments | No |
-| POST | `/api/comments/post/:postId` | Add comment to post | Yes |
-| PUT | `/api/comments/:id` | Update a comment | Yes (Owner) |
-| DELETE | `/api/comments/:id` | Delete a comment | Yes (Owner) |
+| Method | Endpoint                     | Description         | Auth Required |
+| ------ | ---------------------------- | ------------------- | ------------- |
+| GET    | `/api/comments/post/:postId` | Get post comments   | No            |
+| POST   | `/api/comments/post/:postId` | Add comment to post | Yes           |
+| PUT    | `/api/comments/:id`          | Update a comment    | Yes (Owner)   |
+| DELETE | `/api/comments/:id`          | Delete a comment    | Yes (Owner)   |
 
 ### Likes
 
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/likes/post/:postId` | Like a post | Yes |
-| DELETE | `/api/likes/post/:postId` | Unlike a post | Yes |
-| GET | `/api/likes/post/:postId` | Get post likes count | No |
+| Method | Endpoint                  | Description          | Auth Required |
+| ------ | ------------------------- | -------------------- | ------------- |
+| POST   | `/api/likes/post/:postId` | Like a post          | Yes           |
+| DELETE | `/api/likes/post/:postId` | Unlike a post        | Yes           |
+| GET    | `/api/likes/post/:postId` | Get post likes count | No            |
 
 ## API Usage Examples
 
 ### Register a User
+
 ```bash
 POST /api/auth/register
 Content-Type: application/json
@@ -150,6 +158,7 @@ Content-Type: application/json
 ```
 
 ### Login
+
 ```bash
 POST /api/auth/login
 Content-Type: application/json
@@ -161,6 +170,7 @@ Content-Type: application/json
 ```
 
 ### Create a Post
+
 ```bash
 POST /api/posts
 Authorization: Bearer <your-jwt-token>
@@ -173,6 +183,7 @@ Content-Type: application/json
 ```
 
 ### Add a Comment
+
 ```bash
 POST /api/comments/post/1
 Authorization: Bearer <your-jwt-token>
@@ -184,6 +195,7 @@ Content-Type: application/json
 ```
 
 ### Like a Post
+
 ```bash
 POST /api/likes/post/1
 Authorization: Bearer <your-jwt-token>
@@ -214,6 +226,7 @@ All errors follow a consistent format:
 ## Database Schema
 
 ### Users
+
 - id (Primary Key)
 - username (Unique)
 - email (Unique)
@@ -223,6 +236,7 @@ All errors follow a consistent format:
 - timestamps
 
 ### Posts
+
 - id (Primary Key)
 - title
 - content
@@ -230,6 +244,7 @@ All errors follow a consistent format:
 - timestamps
 
 ### Comments
+
 - id (Primary Key)
 - content
 - userId (Foreign Key → Users)
@@ -237,6 +252,7 @@ All errors follow a consistent format:
 - timestamps
 
 ### Likes
+
 - id (Primary Key)
 - userId (Foreign Key → Users)
 - postId (Foreign Key → Posts)
@@ -245,19 +261,19 @@ All errors follow a consistent format:
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| PORT | Server port | 3000 |
-| NODE_ENV | Environment mode | development |
-| DB_HOST | Database host | localhost |
-| DB_PORT | Database port | 5432 |
-| DB_NAME | Database name | social_media_db |
-| DB_USER | Database user | postgres |
-| DB_PASSWORD | Database password | - |
-| JWT_SECRET | JWT secret key | - |
-| JWT_EXPIRE | JWT expiration time | 7d |
-| RATE_LIMIT_WINDOW_MS | Rate limit window | 900000 |
-| RATE_LIMIT_MAX_REQUESTS | Max requests per window | 100 |
+| Variable                | Description             | Default         |
+| ----------------------- | ----------------------- | --------------- |
+| PORT                    | Server port             | 3000            |
+| NODE_ENV                | Environment mode        | development     |
+| DB_HOST                 | Database host           | localhost       |
+| DB_PORT                 | Database port           | 5432            |
+| DB_NAME                 | Database name           | social_media_db |
+| DB_USER                 | Database user           | postgres        |
+| DB_PASSWORD             | Database password       | -               |
+| JWT_SECRET              | JWT secret key          | -               |
+| JWT_EXPIRE              | JWT expiration time     | 7d              |
+| RATE_LIMIT_WINDOW_MS    | Rate limit window       | 900000          |
+| RATE_LIMIT_MAX_REQUESTS | Max requests per window | 100             |
 
 ## Development
 

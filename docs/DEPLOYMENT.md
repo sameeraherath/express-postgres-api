@@ -18,6 +18,7 @@ This guide covers deploying your Social Media Backend API to various platforms.
 ### 1. Heroku Deployment
 
 #### Prerequisites
+
 ```bash
 # Install Heroku CLI
 # Windows (Chocolatey)
@@ -33,32 +34,38 @@ curl https://cli-assets.heroku.com/install.sh | sh
 #### Steps
 
 1. **Login to Heroku**
+
    ```bash
    heroku login
    ```
 
 2. **Create Heroku App**
+
    ```bash
    heroku create your-app-name
    ```
 
 3. **Add PostgreSQL**
+
    ```bash
    heroku addons:create heroku-postgresql:mini
    ```
 
 4. **Set Environment Variables**
+
    ```bash
    heroku config:set JWT_SECRET=your_jwt_secret_here
    heroku config:set NODE_ENV=production
    ```
 
 5. **Create Procfile**
+
    ```
    web: node src/server.js
    ```
 
 6. **Deploy**
+
    ```bash
    git push heroku main
    ```
@@ -77,14 +84,14 @@ Heroku automatically sets `DATABASE_URL`. Update `src/config/database.js`:
 // Add this at the top
 if (process.env.DATABASE_URL) {
   const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
+    dialect: "postgres",
+    protocol: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
-    }
+        rejectUnauthorized: false,
+      },
+    },
   });
 }
 ```
@@ -96,20 +103,24 @@ if (process.env.DATABASE_URL) {
 #### Steps
 
 1. **Sign Up**
+
    - Visit https://railway.app
    - Sign in with GitHub
 
 2. **Create Project**
+
    - Click "New Project"
    - Select "Deploy from GitHub repo"
    - Select your repository
 
 3. **Add PostgreSQL**
+
    - Click "New"
    - Select "Database"
    - Choose "PostgreSQL"
 
 4. **Configure Environment Variables**
+
    - Go to your service
    - Click "Variables"
    - Add:
@@ -128,15 +139,18 @@ if (process.env.DATABASE_URL) {
 #### Steps
 
 1. **Sign Up**
+
    - Visit https://render.com
    - Sign up with GitHub
 
 2. **Create Web Service**
+
    - Click "New +"
    - Select "Web Service"
    - Connect your repository
 
 3. **Configure Service**
+
    ```
    Name: social-media-api
    Environment: Node
@@ -145,11 +159,13 @@ if (process.env.DATABASE_URL) {
    ```
 
 4. **Create PostgreSQL Database**
+
    - Click "New +"
    - Select "PostgreSQL"
    - Note the Internal Database URL
 
 5. **Environment Variables**
+
    - Add environment variables:
      - `DATABASE_URL` (from PostgreSQL)
      - `JWT_SECRET`
@@ -166,20 +182,24 @@ if (process.env.DATABASE_URL) {
 #### Steps
 
 1. **Create Account**
+
    - Visit https://www.digitalocean.com
    - Sign up and create account
 
 2. **Create App**
+
    - Go to Apps
    - Click "Create App"
    - Connect GitHub repository
 
 3. **Add Database**
+
    - Click "Add Resource"
    - Select "Database"
    - Choose PostgreSQL
 
 4. **Configure App**
+
    ```
    Name: social-media-api
    Source: GitHub repository
@@ -188,6 +208,7 @@ if (process.env.DATABASE_URL) {
    ```
 
 5. **Environment Variables**
+
    - Add variables:
      - `JWT_SECRET`
      - `NODE_ENV=production`
@@ -202,6 +223,7 @@ if (process.env.DATABASE_URL) {
 ### 5. AWS (EC2 + RDS)
 
 #### Prerequisites
+
 ```bash
 # Install AWS CLI
 # Windows (MSI Installer)
@@ -219,6 +241,7 @@ sudo ./aws/install
 #### Steps
 
 1. **Create RDS PostgreSQL Instance**
+
    - Go to AWS Console > RDS
    - Create database
    - Choose PostgreSQL
@@ -227,6 +250,7 @@ sudo ./aws/install
    - Note the endpoint
 
 2. **Create EC2 Instance**
+
    - Go to EC2 Dashboard
    - Launch instance
    - Choose Ubuntu Server
@@ -236,33 +260,35 @@ sudo ./aws/install
      - Port 5432 (PostgreSQL - from EC2 only)
 
 3. **Connect to EC2**
+
    ```bash
    ssh -i "your-key.pem" ubuntu@your-ec2-ip
    ```
 
 4. **Setup Server**
+
    ```bash
    # Update system
    sudo apt update && sudo apt upgrade -y
-   
+
    # Install Node.js
    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
    sudo apt install -y nodejs
-   
+
    # Install PM2
    sudo npm install -g pm2
-   
+
    # Clone repository
    git clone https://github.com/yourusername/express-postgres-api.git
    cd express-postgres-api
-   
+
    # Install dependencies
    npm install
-   
+
    # Create .env file
    nano .env
    # Add your environment variables
-   
+
    # Start with PM2
    pm2 start src/server.js --name social-media-api
    pm2 startup
@@ -270,17 +296,19 @@ sudo ./aws/install
    ```
 
 5. **Configure Nginx (Optional)**
+
    ```bash
    sudo apt install nginx
    sudo nano /etc/nginx/sites-available/api
    ```
 
    Add configuration:
+
    ```nginx
    server {
        listen 80;
        server_name your-domain.com;
-       
+
        location / {
            proxy_pass http://localhost:3000;
            proxy_http_version 1.1;
@@ -293,6 +321,7 @@ sudo ./aws/install
    ```
 
    Enable site:
+
    ```bash
    sudo ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/
    sudo nginx -t
@@ -336,7 +365,7 @@ README.md
 #### Create docker-compose.yml
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   api:
@@ -414,17 +443,20 @@ RATE_LIMIT_MAX_REQUESTS=100
 ## Security Best Practices
 
 1. **Environment Variables**
+
    - Never commit `.env` file
    - Use strong JWT secret (min 32 characters)
    - Rotate secrets regularly
 
 2. **Database**
+
    - Use SSL/TLS for database connections
    - Restrict database access by IP
    - Regular backups
    - Strong passwords
 
 3. **API**
+
    - Enable HELMET security headers
    - Implement rate limiting
    - Input validation on all endpoints
@@ -447,32 +479,32 @@ name: Deploy to Production
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run tests
-      run: npm test
-    
-    - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.14
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "your-app-name"
-        heroku_email: "your-email@example.com"
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "your-app-name"
+          heroku_email: "your-email@example.com"
 ```
 
 ## Health Checks
@@ -492,11 +524,13 @@ Add health check endpoint (already included):
 ## Performance Optimization
 
 1. **Database**
+
    - Add indexes on foreign keys
    - Use connection pooling
    - Optimize queries
 
 2. **Caching**
+
    - Implement Redis for session storage
    - Cache frequently accessed data
    - Use ETags for API responses
@@ -540,6 +574,7 @@ pm2 restart all
 ## Support
 
 For deployment issues:
+
 1. Check platform status pages
 2. Review deployment logs
 3. Verify environment variables

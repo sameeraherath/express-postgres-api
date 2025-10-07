@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const jwt = require("jsonwebtoken");
+const { User } = require("../models");
 
 /**
  * Generate JWT token
  */
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE
+    expiresIn: process.env.JWT_EXPIRE,
   });
 };
 
@@ -25,7 +25,7 @@ const register = async (req, res, next) => {
       email,
       password,
       fullName,
-      bio
+      bio,
     });
 
     // Generate token
@@ -33,11 +33,11 @@ const register = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      message: 'User registered successfully',
+      message: "User registered successfully",
       data: {
         user,
-        token
-      }
+        token,
+      },
     });
   } catch (error) {
     next(error);
@@ -55,13 +55,13 @@ const login = async (req, res, next) => {
 
     // Find user by email (include password for verification)
     const user = await User.findOne({
-      where: { email }
+      where: { email },
     });
 
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials'
+        message: "Invalid credentials",
       });
     }
 
@@ -71,7 +71,7 @@ const login = async (req, res, next) => {
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials'
+        message: "Invalid credentials",
       });
     }
 
@@ -80,11 +80,11 @@ const login = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Login successful',
+      message: "Login successful",
       data: {
         user,
-        token
-      }
+        token,
+      },
     });
   } catch (error) {
     next(error);
@@ -102,8 +102,8 @@ const getMe = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: {
-        user: req.user
-      }
+        user: req.user,
+      },
     });
   } catch (error) {
     next(error);
@@ -125,7 +125,7 @@ const updateProfile = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -138,10 +138,10 @@ const updateProfile = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Profile updated successfully',
+      message: "Profile updated successfully",
       data: {
-        user
-      }
+        user,
+      },
     });
   } catch (error) {
     next(error);
@@ -163,7 +163,7 @@ const changePassword = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'User not found'
+        message: "User not found",
       });
     }
 
@@ -173,7 +173,7 @@ const changePassword = async (req, res, next) => {
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
-        message: 'Current password is incorrect'
+        message: "Current password is incorrect",
       });
     }
 
@@ -183,7 +183,7 @@ const changePassword = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Password changed successfully'
+      message: "Password changed successfully",
     });
   } catch (error) {
     next(error);
@@ -195,5 +195,5 @@ module.exports = {
   login,
   getMe,
   updateProfile,
-  changePassword
+  changePassword,
 };

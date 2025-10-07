@@ -12,31 +12,33 @@ This project and everyone participating in it is governed by our Code of Conduct
 
 Before creating bug reports, please check existing issues as you might find out that you don't need to create one. When you are creating a bug report, please include as many details as possible:
 
-* **Use a clear and descriptive title**
-* **Describe the exact steps to reproduce the problem**
-* **Provide specific examples**
-* **Describe the behavior you observed and what you expected**
-* **Include screenshots if possible**
-* **Include your environment details** (OS, Node version, PostgreSQL version)
+- **Use a clear and descriptive title**
+- **Describe the exact steps to reproduce the problem**
+- **Provide specific examples**
+- **Describe the behavior you observed and what you expected**
+- **Include screenshots if possible**
+- **Include your environment details** (OS, Node version, PostgreSQL version)
 
 ### Suggesting Enhancements
 
 Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion, please include:
 
-* **Use a clear and descriptive title**
-* **Provide a detailed description of the suggested enhancement**
-* **Explain why this enhancement would be useful**
-* **List some examples of how it would be used**
+- **Use a clear and descriptive title**
+- **Provide a detailed description of the suggested enhancement**
+- **Explain why this enhancement would be useful**
+- **List some examples of how it would be used**
 
 ### Pull Requests
 
 1. **Fork the repository**
+
    ```bash
    git clone https://github.com/yourusername/express-postgres-api.git
    cd express-postgres-api
    ```
 
 2. **Create a branch**
+
    ```bash
    git checkout -b feat/your-feature-name
    # or
@@ -44,12 +46,14 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
    ```
 
 3. **Make your changes**
+
    - Follow the coding standards
    - Write clear commit messages
    - Add tests if applicable
    - Update documentation
 
 4. **Test your changes**
+
    ```bash
    npm install
    npm run dev
@@ -57,12 +61,14 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
    ```
 
 5. **Commit your changes**
+
    ```bash
    git add .
    git commit -m "feat: add amazing feature"
    ```
 
 6. **Push to your fork**
+
    ```bash
    git push origin feat/your-feature-name
    ```
@@ -88,14 +94,14 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/) speci
 
 ### Types
 
-* **feat**: A new feature
-* **fix**: A bug fix
-* **docs**: Documentation only changes
-* **style**: Changes that don't affect code meaning (formatting, etc.)
-* **refactor**: Code change that neither fixes a bug nor adds a feature
-* **perf**: Performance improvements
-* **test**: Adding or correcting tests
-* **chore**: Changes to build process or auxiliary tools
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that don't affect code meaning (formatting, etc.)
+- **refactor**: Code change that neither fixes a bug nor adds a feature
+- **perf**: Performance improvements
+- **test**: Adding or correcting tests
+- **chore**: Changes to build process or auxiliary tools
 
 ### Examples
 
@@ -113,12 +119,12 @@ chore: update dependencies
 
 ### JavaScript Style Guide
 
-* Use ES6+ features
-* Use `const` and `let`, avoid `var`
-* Use async/await over callbacks
-* Use meaningful variable names
-* Add comments for complex logic
-* Keep functions small and focused
+- Use ES6+ features
+- Use `const` and `let`, avoid `var`
+- Use async/await over callbacks
+- Use meaningful variable names
+- Add comments for complex logic
+- Keep functions small and focused
 
 ### File Structure
 
@@ -136,11 +142,11 @@ src/
 
 ### Naming Conventions
 
-* **Files**: camelCase (e.g., `authController.js`)
-* **Variables**: camelCase (e.g., `userId`)
-* **Constants**: UPPER_SNAKE_CASE (e.g., `JWT_SECRET`)
-* **Classes**: PascalCase (e.g., `User`)
-* **Functions**: camelCase (e.g., `getUserById`)
+- **Files**: camelCase (e.g., `authController.js`)
+- **Variables**: camelCase (e.g., `userId`)
+- **Constants**: UPPER_SNAKE_CASE (e.g., `JWT_SECRET`)
+- **Classes**: PascalCase (e.g., `User`)
+- **Functions**: camelCase (e.g., `getUserById`)
 
 ### Error Handling
 
@@ -162,27 +168,27 @@ Always validate input data:
 
 ```javascript
 const validation = [
-  body('email').isEmail().withMessage('Must be a valid email'),
-  body('password').isLength({ min: 6 }).withMessage('Password too short')
+  body("email").isEmail().withMessage("Must be a valid email"),
+  body("password").isLength({ min: 6 }).withMessage("Password too short"),
 ];
 ```
 
 ### Database Queries
 
-* Use Sequelize ORM methods
-* Include necessary associations
-* Use transactions for multiple operations
-* Handle errors properly
+- Use Sequelize ORM methods
+- Include necessary associations
+- Use transactions for multiple operations
+- Handle errors properly
 
 ```javascript
 const post = await Post.findByPk(id, {
   include: [
     {
       model: User,
-      as: 'author',
-      attributes: ['id', 'username']
-    }
-  ]
+      as: "author",
+      attributes: ["id", "username"],
+    },
+  ],
 });
 ```
 
@@ -209,11 +215,11 @@ const post = await Post.findByPk(id, {
 
 ## Documentation
 
-* Update README.md if needed
-* Update API documentation (api-docs.yaml)
-* Add JSDoc comments to functions
-* Update CHANGELOG.md
-* Include examples in docs
+- Update README.md if needed
+- Update API documentation (api-docs.yaml)
+- Add JSDoc comments to functions
+- Update CHANGELOG.md
+- Include examples in docs
 
 ### JSDoc Example
 
@@ -234,10 +240,12 @@ const getAllPosts = async (req, res, next) => {
 ## Review Process
 
 1. **Automated Checks**
+
    - Code style (if ESLint configured)
    - Tests (if available)
 
 2. **Manual Review**
+
    - Code quality
    - Security considerations
    - Performance implications
@@ -280,17 +288,18 @@ const getAllPosts = async (req, res, next) => {
 
 ## Getting Help
 
-* 💬 [Open a discussion](../../discussions)
-* 🐛 [Report a bug](../../issues)
-* 📧 Email: support@example.com (update this)
-* 📖 Read the [documentation](./README.md)
+- 💬 [Open a discussion](../../discussions)
+- 🐛 [Report a bug](../../issues)
+- 📧 Email: support@example.com (update this)
+- 📖 Read the [documentation](./README.md)
 
 ## Recognition
 
 Contributors will be recognized in:
-* README.md Contributors section
-* CHANGELOG.md for their contributions
-* Special thanks in release notes
+
+- README.md Contributors section
+- CHANGELOG.md for their contributions
+- Special thanks in release notes
 
 ## License
 

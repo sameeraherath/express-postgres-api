@@ -397,14 +397,17 @@
 ## Usage Tips
 
 1. **Set Base URL**
+
    - Collection variable `base_url` defaults to `http://localhost:3000`
    - Change for production: `https://your-api.com`
 
 2. **Authentication**
+
    - Register or Login automatically saves token
    - Token is used in all protected endpoints
 
 3. **Testing Flow**
+
    - Run "Register User" or "Login"
    - Token is automatically saved
    - All authenticated requests will use this token

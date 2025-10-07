@@ -8,7 +8,7 @@
 const successResponse = (res, statusCode, message, data = null) => {
   const response = {
     success: true,
-    message
+    message,
   };
 
   if (data) {
@@ -24,7 +24,7 @@ const successResponse = (res, statusCode, message, data = null) => {
 const errorResponse = (res, statusCode, message, errors = null) => {
   const response = {
     success: false,
-    message
+    message,
   };
 
   if (errors) {
@@ -44,7 +44,7 @@ const getPagination = (page, limit) => {
 
   return {
     limit: parsedLimit,
-    offset
+    offset,
   };
 };
 
@@ -61,7 +61,7 @@ const getPaginationMeta = (count, page, limit) => {
     totalItems: count,
     itemsPerPage: parsedLimit,
     hasNextPage: parsedPage < Math.ceil(count / parsedLimit),
-    hasPreviousPage: parsedPage > 1
+    hasPreviousPage: parsedPage > 1,
   };
 };
 
@@ -69,20 +69,20 @@ const getPaginationMeta = (count, page, limit) => {
  * Sanitize user input - remove HTML tags
  */
 const sanitizeInput = (input) => {
-  if (typeof input !== 'string') return input;
-  return input.replace(/<[^>]*>/g, '');
+  if (typeof input !== "string") return input;
+  return input.replace(/<[^>]*>/g, "");
 };
 
 /**
  * Format date to readable string
  */
 const formatDate = (date) => {
-  return new Date(date).toLocaleString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+  return new Date(date).toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 };
 
@@ -92,5 +92,5 @@ module.exports = {
   getPagination,
   getPaginationMeta,
   sanitizeInput,
-  formatDate
+  formatDate,
 };

@@ -7,11 +7,13 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Windows
 
 1. **Download PostgreSQL**
+
    - Visit https://www.postgresql.org/download/windows/
    - Download the latest version
    - Run the installer
 
 2. **Installation Steps**
+
    - Choose installation directory
    - Select components (PostgreSQL Server, pgAdmin, Command Line Tools)
    - Set data directory
@@ -20,22 +22,23 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
    - Complete installation
 
 3. **Create Database**
+
    ```powershell
    # Open PowerShell or Command Prompt
    # Navigate to PostgreSQL bin directory
    cd "C:\Program Files\PostgreSQL\15\bin"
-   
+
    # Connect to PostgreSQL
    .\psql -U postgres
-   
+
    # Enter your password when prompted
-   
+
    # Create database
    CREATE DATABASE social_media_db;
-   
+
    # Verify database creation
    \l
-   
+
    # Exit
    \q
    ```
@@ -43,28 +46,30 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### macOS
 
 1. **Install with Homebrew**
+
    ```bash
    # Install Homebrew if not installed
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   
+
    # Install PostgreSQL
    brew install postgresql@15
-   
+
    # Start PostgreSQL service
    brew services start postgresql@15
    ```
 
 2. **Create Database**
+
    ```bash
    # Connect to PostgreSQL
    psql postgres
-   
+
    # Create database
    CREATE DATABASE social_media_db;
-   
+
    # Verify
    \l
-   
+
    # Exit
    \q
    ```
@@ -72,29 +77,31 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Linux (Ubuntu/Debian)
 
 1. **Install PostgreSQL**
+
    ```bash
    sudo apt update
    sudo apt install postgresql postgresql-contrib
-   
+
    # Start PostgreSQL service
    sudo systemctl start postgresql
    sudo systemctl enable postgresql
    ```
 
 2. **Create Database**
+
    ```bash
    # Switch to postgres user
    sudo -u postgres psql
-   
+
    # Create database
    CREATE DATABASE social_media_db;
-   
+
    # Create a user (optional)
    CREATE USER myuser WITH PASSWORD 'mypassword';
-   
+
    # Grant privileges
    GRANT ALL PRIVILEGES ON DATABASE social_media_db TO myuser;
-   
+
    # Exit
    \q
    ```
@@ -104,9 +111,10 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Using Docker
 
 1. **Create docker-compose.yml**
+
    ```yaml
-   version: '3.8'
-   
+   version: "3.8"
+
    services:
      postgres:
        image: postgres:15-alpine
@@ -120,12 +128,13 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
        volumes:
          - postgres_data:/var/lib/postgresql/data
        restart: unless-stopped
-   
+
    volumes:
      postgres_data:
    ```
 
 2. **Start Container**
+
    ```bash
    docker-compose up -d
    ```
@@ -141,17 +150,19 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Heroku Postgres
 
 1. **Create Heroku Account**
+
    - Visit https://heroku.com
    - Sign up for free account
 
 2. **Install Heroku CLI**
+
    ```bash
    # Windows (using Chocolatey)
    choco install heroku-cli
-   
+
    # macOS
    brew tap heroku/brew && brew install heroku
-   
+
    # Linux
    curl https://cli-assets.heroku.com/install.sh | sh
    ```
@@ -166,6 +177,7 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Railway
 
 1. **Create Account**
+
    - Visit https://railway.app
    - Sign up with GitHub
 
@@ -177,6 +189,7 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### Supabase
 
 1. **Create Account**
+
    - Visit https://supabase.com
    - Sign up for free
 
@@ -189,6 +202,7 @@ This guide will help you set up PostgreSQL for the Social Media Backend API.
 ### ElephantSQL
 
 1. **Create Account**
+
    - Visit https://www.elephantsql.com
    - Sign up for free
 
@@ -233,6 +247,7 @@ npm run dev
 ```
 
 You should see:
+
 ```
 ✅ Database connection established successfully.
 ✅ Database synchronized successfully.
@@ -243,14 +258,17 @@ You should see:
 The application will automatically create these tables:
 
 1. **users**
+
    - id, username, email, password, fullName, bio
    - timestamps (createdAt, updatedAt)
 
 2. **posts**
+
    - id, title, content, userId
    - timestamps (createdAt, updatedAt)
 
 3. **comments**
+
    - id, content, userId, postId
    - timestamps (createdAt, updatedAt)
 

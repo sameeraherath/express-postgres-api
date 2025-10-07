@@ -9,6 +9,7 @@ This document summarizes the complete social media backend project that has been
 ## ✅ Project Overview
 
 A production-ready RESTful API backend for a social media platform built with:
+
 - **Node.js** & **Express.js**
 - **PostgreSQL** with **Sequelize ORM**
 - **JWT** authentication
@@ -73,6 +74,7 @@ express-postgres-api/
 ## 🎯 Implemented Features
 
 ### ✅ 1. User Authentication
+
 - [x] User registration with validation
 - [x] Secure password hashing (bcrypt)
 - [x] Login with JWT token generation
@@ -83,6 +85,7 @@ express-postgres-api/
 - [x] Token expiration handling
 
 ### ✅ 2. Post Management (CRUD)
+
 - [x] Create new post
 - [x] Get all posts (with pagination)
 - [x] Get single post by ID
@@ -93,6 +96,7 @@ express-postgres-api/
 - [x] Include comments & likes count
 
 ### ✅ 3. Comments System
+
 - [x] Add comment to post
 - [x] Get all comments for a post
 - [x] Update comment (owner only)
@@ -101,6 +105,7 @@ express-postgres-api/
 - [x] Author information included
 
 ### ✅ 4. Likes System
+
 - [x] Like a post
 - [x] Unlike a post
 - [x] Get post likes count
@@ -109,6 +114,7 @@ express-postgres-api/
 - [x] Prevent duplicate likes (unique constraint)
 
 ### ✅ 5. Database Design
+
 - [x] User model with proper validations
 - [x] Post model with foreign key to User
 - [x] Comment model with FK to User & Post
@@ -119,6 +125,7 @@ express-postgres-api/
 - [x] Unique constraints where needed
 
 ### ✅ 6. Security Features
+
 - [x] JWT-based authentication
 - [x] Password hashing with bcrypt (10 salt rounds)
 - [x] Helmet for security headers
@@ -129,6 +136,7 @@ express-postgres-api/
 - [x] Authorization checks (owner-only operations)
 
 ### ✅ 7. Validation & Error Handling
+
 - [x] express-validator for input validation
 - [x] Centralized error handling middleware
 - [x] Consistent error response format
@@ -138,6 +146,7 @@ express-postgres-api/
 - [x] Detailed validation error messages
 
 ### ✅ 8. Pagination
+
 - [x] Pagination on posts list
 - [x] Pagination on comments
 - [x] Pagination on likes
@@ -145,6 +154,7 @@ express-postgres-api/
 - [x] Configurable page size
 
 ### ✅ 9. Documentation
+
 - [x] Comprehensive README.md
 - [x] OpenAPI 3.0 specification
 - [x] API testing guide with cURL examples
@@ -156,6 +166,7 @@ express-postgres-api/
 - [x] Code comments and JSDoc
 
 ### ✅ 10. Development & Deployment
+
 - [x] Environment variables (.env)
 - [x] Docker support (Dockerfile)
 - [x] Docker Compose configuration
@@ -169,45 +180,50 @@ express-postgres-api/
 ## 🔌 API Endpoints
 
 ### Authentication (`/api/auth`)
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | `/register` | Register new user | No |
-| POST | `/login` | Login user | No |
-| GET | `/me` | Get current user | Yes |
-| PUT | `/profile` | Update profile | Yes |
-| PUT | `/password` | Change password | Yes |
+
+| Method | Endpoint    | Description       | Auth |
+| ------ | ----------- | ----------------- | ---- |
+| POST   | `/register` | Register new user | No   |
+| POST   | `/login`    | Login user        | No   |
+| GET    | `/me`       | Get current user  | Yes  |
+| PUT    | `/profile`  | Update profile    | Yes  |
+| PUT    | `/password` | Change password   | Yes  |
 
 ### Posts (`/api/posts`)
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET | `/` | Get all posts | No |
-| GET | `/:id` | Get single post | No |
-| POST | `/` | Create post | Yes |
-| PUT | `/:id` | Update post | Yes (Owner) |
-| DELETE | `/:id` | Delete post | Yes (Owner) |
-| GET | `/user/:userId` | Get user's posts | No |
+
+| Method | Endpoint        | Description      | Auth        |
+| ------ | --------------- | ---------------- | ----------- |
+| GET    | `/`             | Get all posts    | No          |
+| GET    | `/:id`          | Get single post  | No          |
+| POST   | `/`             | Create post      | Yes         |
+| PUT    | `/:id`          | Update post      | Yes (Owner) |
+| DELETE | `/:id`          | Delete post      | Yes (Owner) |
+| GET    | `/user/:userId` | Get user's posts | No          |
 
 ### Comments (`/api/comments`)
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET | `/post/:postId` | Get post comments | No |
-| POST | `/post/:postId` | Add comment | Yes |
-| PUT | `/:id` | Update comment | Yes (Owner) |
-| DELETE | `/:id` | Delete comment | Yes (Owner) |
+
+| Method | Endpoint        | Description       | Auth        |
+| ------ | --------------- | ----------------- | ----------- |
+| GET    | `/post/:postId` | Get post comments | No          |
+| POST   | `/post/:postId` | Add comment       | Yes         |
+| PUT    | `/:id`          | Update comment    | Yes (Owner) |
+| DELETE | `/:id`          | Delete comment    | Yes (Owner) |
 
 ### Likes (`/api/likes`)
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | `/post/:postId` | Like post | Yes |
-| DELETE | `/post/:postId` | Unlike post | Yes |
-| GET | `/post/:postId` | Get post likes | No |
-| GET | `/user/:userId` | Get user likes | No |
+
+| Method | Endpoint        | Description    | Auth |
+| ------ | --------------- | -------------- | ---- |
+| POST   | `/post/:postId` | Like post      | Yes  |
+| DELETE | `/post/:postId` | Unlike post    | Yes  |
+| GET    | `/post/:postId` | Get post likes | No   |
+| GET    | `/user/:userId` | Get user likes | No   |
 
 ---
 
 ## 📦 Dependencies
 
 ### Production Dependencies
+
 - **express** (4.19.2) - Web framework
 - **sequelize** (6.37.3) - ORM
 - **pg** (8.11.5) - PostgreSQL client
@@ -221,6 +237,7 @@ express-postgres-api/
 - **dotenv** (16.4.5) - Environment variables
 
 ### Development Dependencies
+
 - **nodemon** (3.1.0) - Auto-restart on changes
 
 ---
@@ -250,11 +267,13 @@ docker-compose up -d
 ## 🧪 Testing the API
 
 ### 1. Health Check
+
 ```bash
 curl http://localhost:3000
 ```
 
 ### 2. Register User
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/register \
   -H "Content-Type: application/json" \
@@ -262,6 +281,7 @@ curl -X POST http://localhost:3000/api/auth/register \
 ```
 
 ### 3. Create Post
+
 ```bash
 curl -X POST http://localhost:3000/api/posts \
   -H "Authorization: Bearer YOUR_TOKEN" \
@@ -276,6 +296,7 @@ See `docs/API_TESTING.md` for complete examples.
 ## 📊 Database Schema
 
 ### Users Table
+
 ```sql
 - id: INTEGER (PK, Auto-increment)
 - username: VARCHAR(50) (Unique, Not Null)
@@ -288,6 +309,7 @@ See `docs/API_TESTING.md` for complete examples.
 ```
 
 ### Posts Table
+
 ```sql
 - id: INTEGER (PK, Auto-increment)
 - title: VARCHAR(200) (Not Null)
@@ -298,6 +320,7 @@ See `docs/API_TESTING.md` for complete examples.
 ```
 
 ### Comments Table
+
 ```sql
 - id: INTEGER (PK, Auto-increment)
 - content: TEXT (Not Null)
@@ -308,6 +331,7 @@ See `docs/API_TESTING.md` for complete examples.
 ```
 
 ### Likes Table
+
 ```sql
 - id: INTEGER (PK, Auto-increment)
 - userId: INTEGER (FK -> Users.id, Cascade)
@@ -322,28 +346,33 @@ See `docs/API_TESTING.md` for complete examples.
 ## 🔐 Security Features
 
 1. **Authentication**
+
    - JWT tokens with configurable expiration
    - Secure password hashing (bcrypt, 10 rounds)
    - Token verification on protected routes
 
 2. **Authorization**
+
    - Owner-only edit/delete for posts
    - Owner-only edit/delete for comments
    - User-specific operations protected
 
 3. **Input Validation**
+
    - All endpoints validated
    - Email format validation
    - Password strength requirements
    - Field length limits
 
 4. **Security Headers** (Helmet)
+
    - XSS protection
    - Content Security Policy
    - HSTS
    - Frame options
 
 5. **Rate Limiting**
+
    - 100 requests per 15 minutes per IP
    - Configurable via environment variables
 
@@ -362,8 +391,8 @@ All commits follow conventional commit convention:
    - Initial setup
    - Database configuration
    - Models, controllers, routes, middlewares
-   
 2. ✅ `docs: add comprehensive API and deployment documentation`
+
    - OpenAPI specification
    - API testing guide
    - Database setup guide
@@ -396,22 +425,23 @@ Beyond the requirements, these features were added:
 
 ## 📚 Documentation Files
 
-| File | Purpose |
-|------|---------|
-| `README.md` | Main project documentation |
-| `QUICKSTART.md` | 5-minute setup guide |
-| `CONTRIBUTING.md` | Contribution guidelines |
-| `docs/api-docs.yaml` | OpenAPI 3.0 specification |
-| `docs/API_TESTING.md` | cURL testing examples |
-| `docs/DATABASE_SETUP.md` | Database setup (all platforms) |
-| `docs/DEPLOYMENT.md` | Deployment guides |
-| `docs/POSTMAN_COLLECTION.md` | Postman import guide |
+| File                         | Purpose                        |
+| ---------------------------- | ------------------------------ |
+| `README.md`                  | Main project documentation     |
+| `QUICKSTART.md`              | 5-minute setup guide           |
+| `CONTRIBUTING.md`            | Contribution guidelines        |
+| `docs/api-docs.yaml`         | OpenAPI 3.0 specification      |
+| `docs/API_TESTING.md`        | cURL testing examples          |
+| `docs/DATABASE_SETUP.md`     | Database setup (all platforms) |
+| `docs/DEPLOYMENT.md`         | Deployment guides              |
+| `docs/POSTMAN_COLLECTION.md` | Postman import guide           |
 
 ---
 
 ## 🚢 Deployment Ready
 
 The project is ready to deploy on:
+
 - ✅ Heroku
 - ✅ Railway
 - ✅ Render
@@ -427,6 +457,7 @@ See `docs/DEPLOYMENT.md` for detailed instructions.
 ## 🎓 What You Can Learn
 
 This project demonstrates:
+
 - RESTful API design principles
 - JWT authentication implementation
 - Sequelize ORM usage
@@ -446,11 +477,13 @@ This project demonstrates:
 While the project is complete, here are ideas for future enhancements:
 
 1. **Testing**
+
    - Unit tests with Jest
    - Integration tests
    - API endpoint tests
 
 2. **Advanced Features**
+
    - Follow/unfollow users
    - News feed algorithm
    - Post categories/tags
@@ -459,6 +492,7 @@ While the project is complete, here are ideas for future enhancements:
    - File upload (images/videos)
 
 3. **Performance**
+
    - Redis caching
    - Database query optimization
    - CDN for static assets
@@ -490,33 +524,39 @@ While the project is complete, here are ideas for future enhancements:
 ## ✅ Requirements Checklist
 
 ### Project Structure ✅
+
 - [x] Organized folders (routes, controllers, models, middlewares, config)
 - [x] Clear separation of concerns
 - [x] Scalable and maintainable structure
 
 ### Database Setup ✅
+
 - [x] PostgreSQL with Sequelize ORM
 - [x] User, Post, Comment, Like models
 - [x] Proper relationships (one-to-many)
 - [x] Foreign keys and cascading deletes
 
 ### User Authentication ✅
+
 - [x] Registration with bcrypt password hashing
 - [x] Login returning JWT token
 - [x] Authentication middleware for protected routes
 - [x] Input validation and error handling
 
 ### Post Management (CRUD) ✅
+
 - [x] Create, read, update, delete posts
 - [x] Owner-only update/delete restrictions
 - [x] Proper authorization checks
 
 ### Comments and Likes ✅
+
 - [x] Users can comment on posts
 - [x] Users can like/unlike posts
 - [x] Data consistency and relational mapping
 
 ### Validations and Error Handling ✅
+
 - [x] Input validation on all endpoints
 - [x] Required fields checked
 - [x] Format validation (email, etc.)
@@ -524,17 +564,20 @@ While the project is complete, here are ideas for future enhancements:
 - [x] Consistent API responses
 
 ### Environment Variables ✅
+
 - [x] .env for configuration
 - [x] Database credentials
 - [x] JWT secret
 - [x] Other configurations
 
 ### Commit Message Convention ✅
+
 - [x] Clear commit messages
 - [x] Following conventional commits
 - [x] feat:, fix:, docs:, refactor: prefixes
 
 ### Extra Suggestions ✅
+
 - [x] Pagination for posts/comments
 - [x] Rate limiting
 - [x] Input sanitization
@@ -548,6 +591,7 @@ While the project is complete, here are ideas for future enhancements:
 The social media backend API is **100% complete** and production-ready!
 
 ### ✨ Ready to Use
+
 - Clone the repository
 - Run `npm install`
 - Configure `.env`
@@ -555,6 +599,7 @@ The social media backend API is **100% complete** and production-ready!
 - Start building amazing features!
 
 ### 📖 Well Documented
+
 - Comprehensive README
 - API documentation
 - Setup guides
@@ -562,6 +607,7 @@ The social media backend API is **100% complete** and production-ready!
 - Deployment instructions
 
 ### 🔒 Secure by Default
+
 - JWT authentication
 - Password hashing
 - Input validation
@@ -569,6 +615,7 @@ The social media backend API is **100% complete** and production-ready!
 - Security headers
 
 ### 🚀 Deployment Ready
+
 - Docker support
 - Environment variables
 - Multiple platform guides
@@ -579,6 +626,7 @@ The social media backend API is **100% complete** and production-ready!
 ## 📧 Support
 
 For questions or issues:
+
 1. Check the documentation in `/docs`
 2. Review the README.md
 3. Check existing GitHub issues
