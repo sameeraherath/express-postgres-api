@@ -207,39 +207,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - createdAt, updatedAt (Timestamps)
 - Unique constraint on (userId, postId)
 
-### Commit History
-
-- c6f717f - feat: initialize social media backend with complete project structure
-- 3a4cdfd - docs: add comprehensive API and deployment documentation
-- 7485866 - feat: add Docker support and development guides
-- 2566f95 - docs: add comprehensive project completion summary
-
-### Documentation Files
-
-- README.md - Main project documentation
-- QUICKSTART.md - 5-minute setup guide
-- CONTRIBUTING.md - Contribution guidelines
-- PROJECT_SUMMARY.md - Complete feature summary
-- CHANGELOG.md - This file
-- docs/api-docs.yaml - OpenAPI 3.0 specification
-- docs/API_TESTING.md - Testing guide
-- docs/DATABASE_SETUP.md - Database setup
-- docs/DEPLOYMENT.md - Deployment guide
-- docs/POSTMAN_COLLECTION.md - Postman collection
-
-### Project Statistics
-
-- 30+ files created
-- 3,500+ lines of code
-- 20+ API endpoints
-- 8 documentation files
-- 4 database models
-- 4 controllers
-- 4 route files
-- 3 middleware files
-- 11 production dependencies
-
----
 
 ## Future Enhancements (Planned)
 
@@ -248,7 +215,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ ] Unit tests with Jest
 - [ ] Integration tests
 - [ ] Follow/unfollow users functionality
-- [ ] News feed algorithm
+- [ ] feed algorithm
 - [ ] Search functionality
 - [ ] Notifications system
 - [ ] File upload (images/videos)
